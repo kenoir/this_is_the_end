@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <link rel= "stylesheet" type="text/css" href="main.css" />
+        <script src="ender.min.js"></script>
+    </head>
+    <body>
+        <h1 id="greeting">hello</h1>
+        <div id="content-box">
+            ...
+        </div>
+        <script type="text/javascript">
+
+            var domready = require('domready');
+            var bonzo = require('bonzo');
+            var qwery = require('qwery');
+            var reqwest = require('reqwest');
+
+            var jsonp_location  = "https://gist.github.com/kenoir/5388277/raw/e9079b5f4ab5496aca141dc97990f9859023b320/jigglypuff.json"
+
+            var say = function(content){
+                bonzo(qwery('#content-box')).append(content);
+            };
+
+            domready(function () { 
+                reqwest({
+                    url: jsonp_location 
+                    , type: 'jsonp'
+                    , jsonpCallbackName: 'jigglypuff'
+                    , success: function (resp) {
+                       say(resp.content); 
+                    }
+                });
+            });
+
+        </script>
+    </body>
+</html>
