@@ -10,19 +10,14 @@
         </div>
         <script type="text/javascript">
 
-            var domready = require('domready');
-            var bonzo = require('bonzo');
-            var qwery = require('qwery');
-            var reqwest = require('reqwest');
-
             var jsonp_location  = "https://gist.github.com/kenoir/5388277/raw/e9079b5f4ab5496aca141dc97990f9859023b320/jigglypuff.json"
 
             var say = function(content){
-                bonzo(qwery('#content-box')).append(content);
+                $('#content-box').append(content);
             };
 
-            domready(function () { 
-                reqwest({
+            $.domReady(function () { 
+                $.ajax({
                     url: jsonp_location 
                     , type: 'jsonp'
                     , jsonpCallbackName: 'jigglypuff'
